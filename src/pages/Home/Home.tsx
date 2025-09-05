@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 
 import heroImage from '../../assets/images/hero.png';
-import heroImageWebP from '../../assets/images/hero.webp';
-import heroImageAvif from '../../assets/images/hero.avif';
-import trendingGif from '../../assets/images/trending.gif';
-import findGif from '../../assets/images/find.gif';
-import freeGif from '../../assets/images/free.gif';
+import heroImageWebp from '../../assets/images/hero.webp';
+import trendingMP4 from '../../assets/images/trending.mp4';
+import findMP4 from '../../assets/images/find.mp4';
+import freeMP4 from '../../assets/images/free.mp4';
 
 import FeatureItem from './components/FeatureItem/FeatureItem';
 import CustomCursor from './components/CustomCursor/CustomCursor';
@@ -24,8 +23,7 @@ const Home = () => {
     <>
       <section className={styles.heroSection}>
         <picture>
-          <source type="image/avif" srcSet={heroImageAvif} />
-          <source type="image/webp" srcSet={heroImageWebP} />
+          <source type="image/webp" srcSet={heroImageWebp} />
           <img className={heroImage} src={heroImage} alt="hero image" />
         </picture>
         <div className={styles.projectTitle}>
@@ -41,9 +39,9 @@ const Home = () => {
         <div className={styles.featureSectionWrapper}>
           <h2 className={styles.featureTitle}>Features</h2>
           <div className={styles.featureItemContainer}>
-            <FeatureItem title="See trending gif" imageSrc={trendingGif} />
-            <FeatureItem title="Find gif for free" imageSrc={findGif} />
-            <FeatureItem title="Free for everyone" imageSrc={freeGif} />
+            <FeatureItem title="See trending video" imageSrc={trendingMP4} />
+            <FeatureItem title="Find video for free" imageSrc={findMP4} />
+            <FeatureItem title="Free for everyone" imageSrc={freeMP4} />
           </div>
           <Link to="/search">
             <button className={styles.linkButton}>start search</button>
