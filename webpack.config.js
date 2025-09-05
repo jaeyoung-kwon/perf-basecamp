@@ -48,7 +48,7 @@ module.exports = {
     ]
   },
   optimization: {
-    minimize: true,
+    minimize: process.env.NODE_ENV === 'production',
     minimizer: [
       '...',
       new ImageMinimizerPlugin({
