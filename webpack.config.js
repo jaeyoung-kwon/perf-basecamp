@@ -9,7 +9,8 @@ module.exports = {
   entry: './src/index.tsx',
   resolve: { extensions: ['.ts', '.tsx', '.js', '.jsx'] },
   output: {
-    filename: 'bundle.js',
+    filename: 'bundle.[contenthash].js',
+    chunkFilename: '[name].[contenthash].bundle.js',
     path: path.join(__dirname, '/dist'),
     clean: true
   },
@@ -48,20 +49,14 @@ module.exports = {
     ]
   },
   optimization: {
-    minimize: process.env.NODE_ENV === 'production',
+    minimize: true,
     minimizer: [
       '...',
       new ImageMinimizerPlugin({
         minimizer: {
           implementation: ImageMinimizerPlugin.imageminMinify,
           options: {
-            plugins: [
-              'imagemin-gifsicle',
-              'imagemin-mozjpeg',
-              'imagemin-pngquant',
-              'imagemin-svgo',
-              ['webp', { preset: 'photo', quality: 40 }]
-            ]
+            plugins: ['imagemin-gifsicle', 'imagemin-mozjpeg', 'imagemin-pngquant', 'imagemin-svgo']
           }
         },
         generator: [
