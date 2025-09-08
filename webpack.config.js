@@ -43,7 +43,7 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       },
       {
-        test: /\.(eot|svg|ttf|webp|woff|woff2|png|jpg|gif|mp4)$/i,
+        test: /\.(eot|svg|ttf|webp|woff|woff2|png|jpe?g|gif|mp4)$/i,
         type: 'asset'
       }
     ]
@@ -53,29 +53,18 @@ module.exports = {
     minimizer: [
       '...',
       new ImageMinimizerPlugin({
-        minimizer: {
-          implementation: ImageMinimizerPlugin.imageminMinify,
-          options: {
-            plugins: ['imagemin-gifsicle', 'imagemin-mozjpeg', 'imagemin-pngquant', 'imagemin-svgo']
-          }
-        }
-      }),
-      new ImageMinimizerPlugin({
-        deleteOriginalAssets: false,
-        minimizer: {
-          implementation: ImageMinimizerPlugin.imageminGenerate,
-          options: {
-            plugins: [
-              ['webp', { preset: 'photo', quality: 40, resize: { width: 1920, height: 1280 } }]
-            ]
-          }
-        },
+        // webp 변환기 추가
         generator: [
           {
-            type: 'asset',
-            implementation: ImageMinimizerPlugin.imageminGenerate,
+            preset: 'webp',
+            implementation: ImageMinimizerPlugin.sharpGenerate,
             options: {
-              plugins: ['imagemin-webp']
+              encodeOptions: {
+                webp: {
+                  quality: 40,
+                  resize: { width: 1920, height: 1280 }
+                }
+              }
             }
           }
         ]
