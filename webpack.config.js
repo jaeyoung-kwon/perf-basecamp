@@ -62,7 +62,7 @@ module.exports = {
               encodeOptions: {
                 webp: {
                   quality: 40,
-                  resize: { width: 1920, height: 1280 }
+                  resize: { width: 1920 }
                 }
               }
             }
