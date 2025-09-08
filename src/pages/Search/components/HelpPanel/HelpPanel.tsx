@@ -17,7 +17,12 @@ const HelpPanel = () => {
 
   return (
     <>
-      <button type="button" className={styles.floatingButton} onClick={openSheet}>
+      <button
+        type="button"
+        className={styles.floatingButton}
+        onClick={openSheet}
+        aria-label="도움말"
+      >
         <AiOutlineInfo color="white" size="24px" />
       </button>
       <section
@@ -27,7 +32,7 @@ const HelpPanel = () => {
       >
         <div className={styles.sheetTitleContainer}>
           <h4>What's all this? </h4>
-          <button type="button" onClick={closeSheet}>
+          <button type="button" onClick={closeSheet} aria-label="닫기">
             <AiOutlineClose size="24px" />
           </button>
         </div>
