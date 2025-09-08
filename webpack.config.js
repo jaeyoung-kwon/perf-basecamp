@@ -14,6 +14,7 @@ module.exports = {
     path: path.join(__dirname, '/dist'),
     clean: true
   },
+  devtool: 'source-map',
   devServer: {
     hot: true,
     open: true,
