@@ -35,7 +35,7 @@ module.exports = {
         test: /\.(js|jsx|ts|tsx)$/i,
         exclude: /node_modules/,
         use: {
-          loader: 'ts-loader'
+          loader: 'esbuild-loader'
         }
       },
       {
@@ -58,16 +58,7 @@ module.exports = {
           options: {
             plugins: ['imagemin-gifsicle', 'imagemin-mozjpeg', 'imagemin-pngquant', 'imagemin-svgo']
           }
-        },
-        generator: [
-          {
-            type: 'asset',
-            implementation: ImageMinimizerPlugin.imageminGenerate,
-            options: {
-              plugins: ['imagemin-webp']
-            }
-          }
-        ]
+        }
       }),
       new ImageMinimizerPlugin({
         deleteOriginalAssets: false,
@@ -78,7 +69,16 @@ module.exports = {
               ['webp', { preset: 'photo', quality: 40, resize: { width: 1920, height: 1280 } }]
             ]
           }
-        }
+        },
+        generator: [
+          {
+            type: 'asset',
+            implementation: ImageMinimizerPlugin.imageminGenerate,
+            options: {
+              plugins: ['imagemin-webp']
+            }
+          }
+        ]
       })
     ]
   }
