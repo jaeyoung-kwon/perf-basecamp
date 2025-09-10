@@ -2,10 +2,12 @@ import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 
-import heroImage from '../../assets/images/hero.png?as=webp';
-import trendingMP4 from '../../assets/images/trending.gif?as=webp';
-import findMP4 from '../../assets/images/find.gif?as=webp';
-import freeMP4 from '../../assets/images/free.gif?as=webp';
+import heroImage from '../../assets/images/hero.png';
+import heroImageWebp from '../../assets/images/hero.png?as=webp-png';
+import heroImageAvif from '../../assets/images/hero.png?as=avif-png';
+import trendingMP4 from '../../assets/images/trending.gif?as=webp-gif';
+import findMP4 from '../../assets/images/find.gif?as=webp-gif';
+import freeMP4 from '../../assets/images/free.gif?as=webp-gif';
 
 import FeatureItem from './components/FeatureItem/FeatureItem';
 import CustomCursor from './components/CustomCursor/CustomCursor';
@@ -21,7 +23,11 @@ const Home = () => {
   return (
     <>
       <section className={styles.heroSection}>
-        <img className={styles.heroImage} src={heroImage} alt="hero image" />
+        <picture>
+          <source srcSet={heroImageAvif} type="image/avif" />
+          <source srcSet={heroImageWebp} type="image/webp" />
+          <img className={styles.heroImage} src={heroImage} alt="hero image" />
+        </picture>
         <div className={styles.projectTitle}>
           <h1 className={styles.title}>Memegle</h1>
           <h2 className={styles.subtitle}>gif search engine for you</h2>

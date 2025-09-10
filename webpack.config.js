@@ -54,19 +54,46 @@ module.exports = {
     minimizer: [
       '...',
       new ImageMinimizerPlugin({
+        deleteOriginalAssets: false,
         // webp 변환기 추가
         generator: [
           {
-            preset: 'webp',
+            preset: 'webp-png',
             implementation: ImageMinimizerPlugin.sharpGenerate,
             options: {
               encodeOptions: {
                 webp: {
                   quality: 40,
-                  resize: { width: 1920 }
+                  resize: { width: 1280 }
                 }
               }
-            }
+            },
+            filter: (_, sourcePath) => sourcePath.endsWith('.png')
+          },
+          {
+            preset: 'avif-png',
+            implementation: ImageMinimizerPlugin.sharpGenerate,
+            options: {
+              encodeOptions: {
+                avif: {
+                  quality: 30,
+                  resize: { width: 1280 }
+                }
+              }
+            },
+            filter: (_, sourcePath) => sourcePath.endsWith('.png')
+          },
+          {
+            preset: 'webp-gif',
+            implementation: ImageMinimizerPlugin.sharpGenerate,
+            options: {
+              encodeOptions: {
+                webp: {
+                  quality: 40
+                }
+              }
+            },
+            filter: (_, sourcePath) => sourcePath.endsWith('.gif')
           }
         ]
       })
